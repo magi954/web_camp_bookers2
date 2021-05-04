@@ -1,15 +1,6 @@
 <div class='container px-5 px-sm-0'>
+  <%= render 'layouts/errors' obj: @book %>
   <div class='row'>
-    <% if @book.errors.any? %>
-      <div id="error_explanation">
-        <h3><%= @book.errors.count %>error prohibited this obj from being saved:</h3>
-        <ul>
-          <% @book.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'users/info', user: current_user %>
@@ -19,15 +10,6 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
         <%= render 'index', books: @books %>
-          <% if current_user.already_favorited?(@book) %>
-           <%= link_to book_favorites_path(@book), method: :delete do %>
-            <i class="fas fa-heart"></i>
-           <% end %>
-          <% else %>
-           <%= link_to book_favorite_path(@book), method: :post do %>
-            <i class="far fa-heart"></i>
-           <% end %>
-          <% end %>
         <%= book.favorites.count %>
     </div>
   </div>
